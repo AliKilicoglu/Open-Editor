@@ -17,10 +17,11 @@ class DosyaSistemi:
 			dosya_konumu=DosyaSistemi.ac(self)
 			print(dosya_konumu)
 			dosya=open(dosya_konumu,"r")
+			return dosya
 		except:
 			pass
 
-		return dosya
+		
 
 	def kaydet(self):
 		dosya_konumu = DosyaSistemi.ac(self)
