@@ -1,2 +1,0 @@
-FONT_ADI=Times
-FONT_BOYU=12
