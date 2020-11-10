@@ -72,10 +72,12 @@ class Ui_Form(object):
 
 
 
-
-        dosya=DosyaSistemi.yaz(self)
-
-        self.plainTextEdit.insertPlainText(dosya.read())
+        try:
+            dosya=DosyaSistemi.yaz(self)
+            self.plainTextEdit.insertPlainText(dosya.read())
+        except:
+            pass
+        
     def kaydet(self):
         dosya=DosyaSistemi.kaydet(self)
         dosya.write(self.plainTextEdit.toPlainText())
