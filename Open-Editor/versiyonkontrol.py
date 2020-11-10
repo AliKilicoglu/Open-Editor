@@ -10,10 +10,10 @@ class Versiyon_Kontrol:
         veri = BeautifulSoup(html, 'html.parser')
         a=veri.find('td',attrs={'class':'nav_heading'}).get_text()
 
-        if float(a)!=float(dosya):
+        if a!=dosya:
 
             return "1"
 
 
-        elif float(a)==float(dosya):
+        elif a==dosya:
             return "0"
