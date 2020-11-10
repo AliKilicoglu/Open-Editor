@@ -3,7 +3,7 @@ import requests
 class Versiyon_Kontrol:
     def kontrol():
         dosya=open("versiyon.txt","r")
-        dosya=dosya.read().replace("versiyon=","")
+        dosya=dosya.read().replace("versiyon=","").replace("\n", "")
 
         istek = requests.get(url = "https://open-editor-versiyon-kontrol.tr.gg/")
         html = istek.text
