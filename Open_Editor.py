@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from ayarlar import Ui_MainWindow
+import syntax
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -31,6 +32,7 @@ class Ui_Form(object):
         self.plainTextEdit.setGeometry(QtCore.QRect(0, 40, 601, 491))
         self.plainTextEdit.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.plainTextEdit.setObjectName("plainTextEdit")
+        self.highlighter = syntax.PythonHighlighter(self.plainTextEdit.document())
         self.pushButton.clicked.connect(self.yaz)
         self.pushButton_2.clicked.connect(self.kaydet)
 
