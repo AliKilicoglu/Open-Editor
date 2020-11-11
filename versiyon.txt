@@ -1,1 +1,1 @@
-versiyon=1.7.3
+versiyon=1.8.2
