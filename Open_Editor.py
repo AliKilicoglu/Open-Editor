@@ -37,6 +37,8 @@ class Ui_Form(object):
         self.tabWidget = QtWidgets.QTabWidget(Form)
         self.tabWidget.setGeometry(QtCore.QRect(0, 60, 601, 481))
         self.tabWidget.setObjectName("tabWidget")
+        self.tabWidget.setTabsClosable(True)
+        self.tabWidget.tabCloseRequested.connect(lambda index: self.tabWidget.removeTab(index))
         #self.tab = QtWidgets.QWidget()
         #self.tab.setObjectName("tab")
 
