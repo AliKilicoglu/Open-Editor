@@ -70,6 +70,13 @@ class Ui_Form(object):
         self.pushButton_3.setText(_translate("Form", "Çalıştır"))
         self.pushButton_4.setText(_translate("Form", "Ayarlar"))
         self.pushButton_5.setText(_translate("Form", "Yeni"))
+        self.pushButton.setIcon(QIcon('Aç.png'))
+        self.pushButton_2.setIcon(QIcon('Kaydet.png'))
+        self.pushButton_3.setIcon(QIcon('Çalıştır.png')) 
+     
+        self.pushButton_4.setIcon(QIcon('Ayarlar.png')) 
+        self.pushButton_5.setIcon(QIcon('Yeni.png')) 
+
 
 
 
