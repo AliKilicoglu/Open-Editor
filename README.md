@@ -1,5 +1,4 @@
-# Open Editor
-
+![alt text](https://hizliresim.com/actnqr)
 ### Gerekli modülleri indirmek
 
 ````shell
