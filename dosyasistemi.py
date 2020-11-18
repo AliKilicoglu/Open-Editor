@@ -5,18 +5,19 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMessageBox
 import sys
 import subprocess
+import os
 class DosyaSistemi:
 
 
     def ac(self):
         filename = QFileDialog.getOpenFileName()
-    
+
         self.path = filename[0]
 
         return self.path
     def yaz(self):
         try:
-            self.dosya_konumu=DosyaSistemi.ac(self)
+            self.path=DosyaSistemi.ac(self)
 
             dosya=open(self.dosya_konumu,"r")
 
@@ -27,17 +28,25 @@ class DosyaSistemi:
         return self.path
         pass
 
+    def yeni(self):
+        file = str(QFileDialog.getExistingDirectory(None, "Klasör Seç"))
+        os.chdir(file)
+        self.path=file+"untitled.py"
+        dosya=open("untitled.py","w")
+        dosya.close()
+        dosya=open("untitled.py","r")
+        return dosya
 
 
 
     def kaydet(self):
 
-        dosya=open(self.dosya_konumu,"w")
+        dosya=open(self.path,"w")
         return dosya
     def calistir(self):
 
 
-        output = subprocess.check_output([sys.executable, self.dosya_konumu]).decode('utf-8').rstrip()
+        output = subprocess.check_output([sys.executable, self.path]).decode('utf-8').rstrip()
 
         msg = QMessageBox()
         msg.setWindowTitle("Kod Derleniyor")
