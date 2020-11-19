@@ -46,10 +46,7 @@ class Ui_Form(object):
         #self.tab = QtWidgets.QWidget()
         #self.tab.setObjectName("tab")
 
-        #self.tabWidget.addTab(self.tab, "")
-        #self.tab_2 = QtWidgets.QWidget()
-        #self.tab_2.setObjectName("tab_2")
-        #self.tabWidget.addTab(self.tab_2, "")
+
 
 
 
@@ -83,8 +80,10 @@ class Ui_Form(object):
     def yaz(self):
 
         dosya=open("ayarlar.txt","r")
-        font_ad=dosya.readline().replace("FONT_ADI=","")
-        font_boy=dosya.readline().replace("FONT_BOYU=","")
+        font_ad=dosya.readline().replace("FONT_ADI=","").replace("\n", "")
+
+        font_boy=dosya.readline().replace("FONT_BOYU=","").replace("\n", "")
+        dosya.close()
 
         update=Versiyon_Kontrol.kontrol()
         if update =="1":
