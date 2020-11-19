@@ -92,7 +92,7 @@ class Ui_Form(object):
 
             msg.setWindowTitle("Güncelleme")
             #msg.setText("Yeni günceleme bulundu.\na href <'https://tinyurl.com/y2ruqeh4'>aa</a> güncel sürümü burdan indirebilirsiniz")
-            msg.setText("Yeni günceleme bulundu!.Güncelemeyi<a href='https://tinyurl.com/y2ruqeh4'Subject=My%20Subject>burdan</a>indirebilirsiniz ")
+            msg.setText("Yeni günceleme bulundu!.Güncelemeyi<a href='https://tinyurl.com/y2ruqeh4'Subject=My%20Subject> burdan </a>indirebilirsiniz ")
             msg.setIcon(QMessageBox.Information)
 
 
@@ -135,19 +135,11 @@ class Ui_Form(object):
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self.pencere)
         self.pencere.show()
-        dosya=open("ayarlar.txt","r")
-        font_ad=dosya.readline().replace("FONT_ADI=","")
 
-        font_boy=dosya.readline().replace("FONT_BOYU=","")
-        self.plainTextEdit.setFont(QFont(font_ad, int(font_boy)))
-        text=self.plainTextEdit.toPlainText()
-        self.plainTextEdit.clear()
-        self.plainTextEdit.insertPlainText(text)
-        pass
     def yeni(self):
         dosya=open("ayarlar.txt","r")
-        font_ad=dosya.readline().replace("FONT_ADI=","")
-        font_boy=dosya.readline().replace("FONT_BOYU=","")
+        font_ad=dosya.readline().replace("FONT_ADI=","").replace("\n", "")
+        font_boy=dosya.readline().replace("FONT_BOYU=","").replace("\n", "")
         dosya.close()
         self.dosya_konumu = DosyaSistemi.yeni(self)
 
