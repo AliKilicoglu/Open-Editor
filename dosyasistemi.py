@@ -19,7 +19,7 @@ class DosyaSistemi:
         try:
             self.path=DosyaSistemi.ac(self)
 
-            dosya=open(self.dosya_konumu,"r")
+            dosya=open(self.path,"r")
 
             return dosya
         except:
