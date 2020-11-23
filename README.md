@@ -5,9 +5,9 @@
 > pip install -r requirements.txt
 ````
 ### Can run your code
-![alt text](https://prnt.sc/voc2y8)
+![alt text](https://prnt.sc/voc2y8.png)
 ### Has tabs
-![alt text](https://prnt.sc/voc5fn)
+![alt text](https://prnt.sc/voc5fn.png)
 ### Also has a version control system
-![alt text](https://prnt.sc/voc652)
+![alt text](https://prnt.sc/voc652.png)
 
