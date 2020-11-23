@@ -46,11 +46,12 @@ class DosyaSistemi:
     def calistir(self):
 
 
+
         output = subprocess.check_output([sys.executable, self.path]).decode('utf-8').rstrip()
 
         msg = QMessageBox()
-        msg.setWindowTitle("Kod Derleniyor")
-        msg.setText("Kod Derleniyor")
+        msg.setWindowTitle("Code running")
+        msg.setText("Code running you can see output pressing 'Show Details'")
         msg.setIcon(QMessageBox.Question)
         msg.setDetailedText(output)
         x = msg.exec_()
