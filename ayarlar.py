@@ -37,17 +37,17 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Ayarlar"))
-        self.pushButton.setText(_translate("MainWindow", "Onayla"))
-        self.label.setText(_translate("MainWindow", "Font Adı:"))
-        self.label_2.setText(_translate("MainWindow", "Font Boyu:"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Settings"))
+        self.pushButton.setText(_translate("MainWindow", "Ok"))
+        self.label.setText(_translate("MainWindow", "Font Name:"))
+        self.label_2.setText(_translate("MainWindow", "Font Size:"))
     def font_ayar(self):
         dosya=open("ayarlar.txt","w")
         font_ad="FONT_ADI="+self.textEdit.toPlainText()+"\n"
         font_boy="FONT_BOYU="+self.textEdit_2.toPlainText()+"\n"
         dosya.write(font_ad)
         dosya.write(font_boy)
-        print("işlem tamamlandı")
+        
 
 
 if __name__ == "__main__":
@@ -58,3 +58,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
