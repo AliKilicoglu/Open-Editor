@@ -4,6 +4,7 @@ from versiyonkontrol  import Versiyon_Kontrol
 from PyQt5.QtWidgets import QMessageBox,QTabWidget
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtGui import QTextCursor
 from ayarlar import Ui_MainWindow
 import syntax
 import os
@@ -43,10 +44,14 @@ class Ui_Form(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(lambda index: self.tabWidget.removeTab(index))
+
         #self.tab = QtWidgets.QWidget()
         #self.tab.setObjectName("tab")
 
-
+        #self.tabWidget.addTab(self.tab, "")
+        #self.tab_2 = QtWidgets.QWidget()
+        #self.tab_2.setObjectName("tab_2")
+        #self.tabWidget.addTab(self.tab_2, "")
 
 
 
@@ -62,27 +67,42 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Open Editor"))
-        self.pushButton_2.setText(_translate("Form", "Kaydet"))
-        self.pushButton.setText(_translate("Form", "Aç"))
-        self.pushButton_3.setText(_translate("Form", "Çalıştır"))
-        self.pushButton_4.setText(_translate("Form", "Ayarlar"))
-        self.pushButton_5.setText(_translate("Form", "Yeni"))
-        self.pushButton.setIcon(QIcon('Aç.png'))
-        self.pushButton_2.setIcon(QIcon('Kaydet.png'))
-        self.pushButton_3.setIcon(QIcon('Çalıştır.png')) 
-     
-        self.pushButton_4.setIcon(QIcon('Ayarlar.png')) 
-        self.pushButton_5.setIcon(QIcon('Yeni.png')) 
+        self.pushButton_2.setText(_translate("Form", "Save"))
+        self.pushButton.setText(_translate("Form", "Open"))
+        self.pushButton_3.setText(_translate("Form", "Run"))
+        self.pushButton_4.setText(_translate("Form", "Settings"))
+        self.pushButton_5.setText(_translate("Form", "New"))
+        self.pushButton.setIcon(QIcon('Images/Aç.png'))
+        self.pushButton_2.setIcon(QIcon('Images/Kaydet.png'))
+        self.pushButton_3.setIcon(QIcon('Images/Çalıştır.png'))
+
+        self.pushButton_4.setIcon(QIcon('Images/Ayarlar.png'))
+        self.pushButton_5.setIcon(QIcon('Images/Yeni.png'))
 
 
 
+    def add_indent(self):
+        cursor = self.QTextCursor()
+        line = cursor.blockNumber()
+        split = self.toPlainText().split("\n")
+        last = split[line-1]
+        count = last.count("\t")
 
+        if last.endswith(":") and self.key == Qt.Key_Return:
+            self.key = None
+            self.insertPlainText("\t"*(count+1))
+
+        elif self.key == Qt.Key_Return:
+            self.key = None
+            count = last.count("\t")
+            self.insertPlainText("\t"*(count))
     def yaz(self):
 
         dosya=open("ayarlar.txt","r")
         font_ad=dosya.readline().replace("FONT_ADI=","").replace("\n", "")
 
         font_boy=dosya.readline().replace("FONT_BOYU=","").replace("\n", "")
+
         dosya.close()
 
         update=Versiyon_Kontrol.kontrol()
@@ -90,9 +110,9 @@ class Ui_Form(object):
 
             msg = QMessageBox()
 
-            msg.setWindowTitle("Güncelleme")
+            msg.setWindowTitle("Update!")
             #msg.setText("Yeni günceleme bulundu.\na href <'https://tinyurl.com/y2ruqeh4'>aa</a> güncel sürümü burdan indirebilirsiniz")
-            msg.setText("Yeni günceleme bulundu!.Güncelemeyi<a href='https://tinyurl.com/y2ruqeh4'Subject=My%20Subject> burdan </a>indirebilirsiniz ")
+            msg.setText("A new update found!.You can dowland from <a href='https://tinyurl.com/y2ruqeh4'Subject=My%20Subject> here</a> ")
             msg.setIcon(QMessageBox.Information)
 
 
@@ -103,25 +123,26 @@ class Ui_Form(object):
 
 
 
-        try:
-            dosya=DosyaSistemi.yaz(self)
 
-            self.tab = QtWidgets.QWidget()
-            self.tab.setObjectName("tab")
+        dosya=DosyaSistemi.yaz(self)
 
-            self.plainTextEdit = QtWidgets.QPlainTextEdit(self.tab)
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
 
-            self.tabWidget.addTab(self.tab, str(DosyaSistemi.dosya_adi(self)))
-            self.plainTextEdit.setGeometry(QtCore.QRect(0, 10, 600, 490))
-            self.plainTextEdit.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.IBeamCursor))
-            self.plainTextEdit.setObjectName("plainTextEdit")
-            self.highlighter = syntax.PythonHighlighter(self.plainTextEdit.document())
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.tab)
 
-            self.plainTextEdit.clear()
-            self.plainTextEdit.setFont(QFont(font_ad, int(font_boy)))
-            self.plainTextEdit.insertPlainText(dosya.read())
-        except:
-            pass
+        self.tabWidget.addTab(self.tab, str(DosyaSistemi.dosya_adi(self)))
+        self.plainTextEdit.setGeometry(QtCore.QRect(0, 10, 600, 490))
+        self.plainTextEdit.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.IBeamCursor))
+        self.plainTextEdit.setObjectName("plainTextEdit")
+        self.highlighter = syntax.PythonHighlighter(self.plainTextEdit.document())
+
+        self.plainTextEdit.clear()
+        self.plainTextEdit.setFont(QFont(font_ad, int(font_boy)))
+        self.plainTextEdit.insertPlainText(dosya.read())
+
+
+
 
     def kaydet(self):
         dosya=DosyaSistemi.kaydet(self)
@@ -178,4 +199,12 @@ if __name__ == "__main__":
 
     Form.show()
     sys.exit(app.exec_())
+
+
+
+
+
+
+
+
 
