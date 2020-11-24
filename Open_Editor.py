@@ -78,6 +78,12 @@ class Ui_Form(object):
 
         self.pushButton_4.setIcon(QIcon('Images/Ayarlar.png'))
         self.pushButton_5.setIcon(QIcon('Images/Yeni.png'))
+        self.pushButton.setShortcut(_translate("MainWindow", "Ctrl+O"))
+        self.pushButton_2.setShortcut(_translate("MainWindow", "Ctrl+S"))
+        self.pushButton_3.setShortcut(_translate("MainWindow", "Ctrl+B"))
+        self.pushButton_4.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
+        self.pushButton_5.setShortcut(_translate("MainWindow", "Ctrl+N"))
+
 
 
 
