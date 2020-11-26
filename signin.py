@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from firebase import firebase
 from PyQt5.QtWidgets import QMessageBox
 
-class Ui_MainWindow(object):
+class Ui_MainWindor(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(380, 205)
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MainWindor()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
