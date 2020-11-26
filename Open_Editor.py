@@ -10,7 +10,7 @@ import syntax
 import os
 from PyQt5.QtGui import QPixmap
 from signup import Ui_MainWindo
-from signin import Ui_MainWindow
+from signin import Ui_MainWindor
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -220,7 +220,7 @@ class Ui_Form(object):
         self.pencere.show()
     def signin(self):
         self.pencere=QtWidgets.QMainWindow()
-        self.ui=Ui_MainWindow()
+        self.ui=Ui_MainWindor()
         self.ui.setupUi(self.pencere)
         self.pencere.show()
 
