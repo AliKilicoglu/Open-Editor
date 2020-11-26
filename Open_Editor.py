@@ -8,10 +8,14 @@ from PyQt5.QtGui import QTextCursor
 from ayarlar import Ui_MainWindow
 import syntax
 import os
+from PyQt5.QtGui import QPixmap
+from signup import Ui_MainWindo
+from signin import Ui_MainWindow
+
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(598, 532)
+        Form.resize(750, 532)
 
 
         Form.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -34,13 +38,27 @@ class Ui_Form(object):
         self.pushButton_4 = QtWidgets.QPushButton(Form)
         self.pushButton_4.setGeometry(QtCore.QRect(320, 0, 81, 41))
         self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_6 = QtWidgets.QPushButton(Form)
+        self.pushButton_6.setGeometry(QtCore.QRect(400, 0, 81, 41))
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_7 = QtWidgets.QPushButton(Form)
+        self.pushButton_7.setGeometry(QtCore.QRect(480, 0, 81, 41))
+        self.pushButton_7.setObjectName("pushButton_7")
         self.pushButton_4.clicked.connect(self.ayarlar)
+        self.pushButton_6.clicked.connect(self.signup)
+        self.pushButton_7.clicked.connect(self.signin)
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(625, 0, 300, 41))
+        self.label.setObjectName("label")
+
+
+
 
 
         self.pushButton.clicked.connect(self.yaz)
         self.pushButton_2.clicked.connect(self.kaydet)
         self.tabWidget = QtWidgets.QTabWidget(Form)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 60, 601, 481))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 60, 750, 481))
         self.tabWidget.setObjectName("tabWidget")
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(lambda index: self.tabWidget.removeTab(index))
@@ -72,18 +90,21 @@ class Ui_Form(object):
         self.pushButton_3.setText(_translate("Form", "Run"))
         self.pushButton_4.setText(_translate("Form", "Settings"))
         self.pushButton_5.setText(_translate("Form", "New"))
+        self.pushButton_6.setText(_translate("Form", "Sign Up"))
+        self.pushButton_7.setText(_translate("Form", "Sign in"))
         self.pushButton.setIcon(QIcon('Images/Aç.png'))
         self.pushButton_2.setIcon(QIcon('Images/Kaydet.png'))
-        self.pushButton_3.setIcon(QIcon('Images/Çalıştır.png'))
 
+        self.pushButton_3.setIcon(QIcon('Images/Çalıştır.png'))
         self.pushButton_4.setIcon(QIcon('Images/Ayarlar.png'))
+        self.pushButton_6.setIcon(QIcon('Images/add_user.png'))
+        self.pushButton_7.setIcon(QIcon('Images/login.png'))
         self.pushButton_5.setIcon(QIcon('Images/Yeni.png'))
-        self.pushButton.setShortcut(_translate("MainWindow", "Ctrl+O"))
+        self.pushButton_5.setShortcut(_translate("MainWindow", "Ctrl+N"))
+        self.pushButton_4.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
         self.pushButton_2.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.pushButton_3.setShortcut(_translate("MainWindow", "Ctrl+B"))
-        self.pushButton_4.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
-        self.pushButton_5.setShortcut(_translate("MainWindow", "Ctrl+N"))
-
+        self.pushButton.setShortcut(_translate("MainWindow", "Ctrl+O"))
 
 
 
@@ -103,6 +124,13 @@ class Ui_Form(object):
             count = last.count("\t")
             self.insertPlainText("\t"*(count))
     def yaz(self):
+        pixmap = QPixmap('user.png')
+        self.label.setPixmap(pixmap)
+        file=open("account.txt","r")
+        self.label.setText(file.read())
+        file.close()
+
+
 
         dosya=open("ayarlar.txt","r")
         font_ad=dosya.readline().replace("FONT_ADI=","").replace("\n", "")
@@ -118,7 +146,7 @@ class Ui_Form(object):
 
             msg.setWindowTitle("Update!")
             #msg.setText("Yeni günceleme bulundu.\na href <'https://tinyurl.com/y2ruqeh4'>aa</a> güncel sürümü burdan indirebilirsiniz")
-            msg.setText("A new update found!.You can dowland from <a href='https://tinyurl.com/y2ruqeh4'Subject=My%20Subject> here</a> ")
+            msg.setText("A new update found!.You can downland from <a href='https://tinyurl.com/y2ruqeh4'Subject=My%20Subject> here</a> ")
             msg.setIcon(QMessageBox.Information)
 
 
@@ -185,6 +213,16 @@ class Ui_Form(object):
         self.plainTextEdit.setFont(QFont(font_ad, int(font_boy)))
         self.plainTextEdit.insertPlainText(self.dosya_konumu.read())
         self.dosya_konumu=str(self.dosya_konumu)
+    def signup(self):
+        self.pencere=QtWidgets.QMainWindow()
+        self.ui=Ui_MainWindo()
+        self.ui.setupUi(self.pencere)
+        self.pencere.show()
+    def signin(self):
+        self.pencere=QtWidgets.QMainWindow()
+        self.ui=Ui_MainWindow()
+        self.ui.setupUi(self.pencere)
+        self.pencere.show()
 
 
 
@@ -205,10 +243,6 @@ if __name__ == "__main__":
 
     Form.show()
     sys.exit(app.exec_())
-
-
-
-
 
 
 
