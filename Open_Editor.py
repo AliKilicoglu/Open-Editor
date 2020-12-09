@@ -170,7 +170,7 @@ class Ui_Form(object):
         self.plainTextEdit.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.IBeamCursor))
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.highlighter = syntax.PythonHighlighter(self.plainTextEdit.document())
-
+        #Ali Kılıçoğlu'na aittir
         self.plainTextEdit.clear()
         self.plainTextEdit.setFont(QFont(font_ad, int(font_boy)))
         self.plainTextEdit.insertPlainText(dosya.read())
